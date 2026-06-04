@@ -1,0 +1,658 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg:     #1D1D1D;
+    --text:   #F0EDE6;
+    --accent: #C9A074;
+    --muted:  #888888;
+    --border: #2E2E2E;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    max-width: 100%;
+  }
+
+  body {
+    background-color: #1D1D1D;
+    color: #F0EDE6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    max-width: 100%;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  ::selection {
+    background-color: rgba(201, 160, 116, 0.3);
+    color: #F0EDE6;
+  }
+
+  :focus-visible {
+    outline: 2px solid #C9A074;
+    outline-offset: 3px;
+  }
+
+  img, picture, video {
+    max-width: 100%;
+    display: block;
+  }
+}
+
+@layer components {
+  .label-track {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    color: #888888;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .gold-line {
+    display: block;
+    height: 1px;
+    width: 4rem;
+    background-color: #C9A074;
+  }
+
+  .section-pad {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+
+  @media (min-width: 1024px) {
+    .section-pad {
+      padding-top: 9rem;
+      padding-bottom: 9rem;
+    }
+  }
+}
+
+/* ═══════════════════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════════════════ */
+
+.hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 80px;
+  min-height: 100vh;
+  padding: 140px 80px 80px;
+  background: #1A1A1A;
+  overflow: hidden;
+}
+
+.hero__bg-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+.hero__shape { position: absolute; }
+
+.hero__shape--ring {
+  width: 480px; height: 480px;
+  border-radius: 50%;
+  border: 1px solid rgba(201, 160, 116, 0.12);
+  top: -80px; right: -60px;
+}
+.hero__shape--line-h {
+  width: 200px; height: 1px;
+  background: rgba(201, 160, 116, 0.2);
+  bottom: 28%; left: 8%;
+}
+.hero__shape--line-v {
+  width: 1px; height: 120px;
+  background: rgba(240, 237, 230, 0.08);
+  top: 30%; left: 48%;
+}
+.hero__shape--dot-grid {
+  width: 160px; height: 160px;
+  background-image: radial-gradient(circle, rgba(201,160,116,0.18) 1px, transparent 1px);
+  background-size: 20px 20px;
+  bottom: 15%; right: 52%;
+}
+
+.hero__content { position: relative; z-index: 10; }
+
+.hero__label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #C9A074;
+  margin-bottom: 28px;
+  font-family: var(--font-body);
+}
+.hero__label-line {
+  display: inline-block;
+  width: 32px; height: 1px;
+  background: #C9A074;
+  flex-shrink: 0;
+}
+
+.hero__title {
+  font-size: clamp(5rem, 10vw, 8rem);
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+  font-weight: 300;
+  line-height: 0.95;
+  color: #F0EDE6;
+  margin-bottom: 28px;
+  letter-spacing: -0.02em;
+}
+.hero__title-accent {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+  font-style: normal !important;
+  font-weight: 200 !important;
+  color: #C9A074;
+  letter-spacing: 0.04em !important;
+  display: inline !important;
+}
+
+.hero__divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+.hero__divider-line {
+  flex: 1; height: 1px;
+  background: rgba(240, 237, 230, 0.15);
+  max-width: 80px;
+}
+.hero__divider-dot {
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: #C9A074;
+}
+
+.hero__tagline {
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-family: var(--font-display);
+  font-weight: 400;
+  color: #F0EDE6;
+  line-height: 1.3;
+  margin-bottom: 16px;
+}
+
+.hero__description {
+  font-size: 15px;
+  font-family: var(--font-body);
+  color: rgba(240, 237, 230, 0.5);
+  line-height: 1.7;
+  margin-bottom: 40px;
+  max-width: 360px;
+}
+
+.hero__stats {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 44px;
+}
+.hero__stat { display: flex; flex-direction: column; gap: 3px; }
+.hero__stat-number {
+  font-size: 1.6rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: #C9A074;
+  line-height: 1;
+}
+.hero__stat-label {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(240, 237, 230, 0.4);
+  font-family: var(--font-body);
+}
+.hero__stat-divider {
+  width: 1px; height: 36px;
+  background: rgba(240, 237, 230, 0.1);
+  flex-shrink: 0;
+}
+
+.hero__cta-row {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+.hero__cta-primary {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 36px;
+  height: 48px;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-family: var(--font-body);
+  background: #C9A074;
+  color: #1A1A1A;
+  text-decoration: none;
+  transition: background 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.hero__cta-primary:hover { background: #F0EDE6; }
+
+.hero__cta-secondary {
+  display: inline-flex;
+  align-items: center;
+  height: 48px;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-family: var(--font-body);
+  color: rgba(240, 237, 230, 0.5);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+.hero__cta-secondary:hover { color: #C9A074; }
+
+.hero__image-wrap { position: relative; z-index: 5; }
+.hero__image-frame {
+  position: relative;
+  height: 640px;
+  overflow: hidden;
+}
+.hero__image {
+  object-fit: cover;
+  object-position: center top;
+}
+.hero__image-accent {
+  position: absolute;
+  top: -12px; right: -12px;
+  width: 60%; height: 60%;
+  border-top: 1px solid rgba(201, 160, 116, 0.3);
+  border-right: 1px solid rgba(201, 160, 116, 0.3);
+  pointer-events: none;
+}
+.hero__badge {
+  position: absolute;
+  bottom: -20px; left: -24px;
+  background: #1A1A1A;
+  border: 1px solid rgba(201, 160, 116, 0.25);
+  padding: 14px 22px;
+  z-index: 20;
+}
+.hero__badge-text {
+  display: block;
+  font-size: 13px;
+  font-family: var(--font-display);
+  color: #F0EDE6;
+  letter-spacing: 0.05em;
+}
+.hero__badge-sub {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #C9A074;
+  margin-top: 2px;
+  font-family: var(--font-body);
+}
+
+.hero__scroll-indicator {
+  position: absolute;
+  bottom: 40px; left: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  z-index: 10;
+}
+.hero__scroll-line {
+  width: 1px; height: 48px;
+  background: linear-gradient(to bottom, rgba(201,160,116,0.6), transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.4; transform: scaleY(1); }
+  50%       { opacity: 1;   transform: scaleY(1.1); }
+}
+.hero__scroll-text {
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(201, 160, 116, 0.5);
+  font-family: var(--font-body);
+  writing-mode: vertical-rl;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__scroll-line { animation: none; opacity: 0.4; }
+}
+
+/* ═══════════════════════════════════════════════════════
+   HERO MOBILE (Fix 3 — vollständiges Rebuild)
+═══════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .hero {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    padding: 90px 24px 48px !important;
+    gap: 0 !important;
+    min-height: auto !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  .hero__bg-layer { display: none !important; }
+  .hero__label { font-size: 10px !important; margin-bottom: 16px !important; }
+  .hero__title {
+    font-size: clamp(3rem, 14vw, 5rem) !important;
+    line-height: 0.9 !important;
+    margin-bottom: 20px !important;
+  }
+  .hero__divider { margin-bottom: 16px !important; }
+  .hero__tagline { font-size: clamp(1.2rem, 5vw, 1.6rem) !important; margin-bottom: 12px !important; }
+  .hero__description { font-size: 14px !important; max-width: 100% !important; margin-bottom: 24px !important; }
+  .hero__stats { gap: 12px !important; margin-bottom: 28px !important; flex-wrap: nowrap !important; }
+  .hero__stat-number { font-size: 1.2rem !important; }
+  .hero__stat-label  { font-size: 9px !important; }
+  .hero__cta-row {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 12px !important;
+    width: 100% !important;
+    margin-bottom: 36px !important;
+  }
+  .hero__cta-primary {
+    text-align: center !important;
+    justify-content: center !important;
+    padding: 0 24px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  .hero__cta-secondary {
+    text-align: center !important;
+    justify-content: center !important;
+    padding: 12px !important;
+  }
+  .hero__image-wrap { width: 100% !important; position: relative !important; }
+  .hero__image-frame {
+    width: 100% !important;
+    height: 72vw !important;
+    min-height: 260px !important;
+    max-height: 400px !important;
+    overflow: hidden !important;
+  }
+  .hero__image-accent { display: none !important; }
+  .hero__badge { bottom: 12px !important; left: 12px !important; padding: 10px 14px !important; }
+  .hero__badge-text { font-size: 11px !important; }
+  .hero__badge-sub  { font-size: 9px !important; }
+  .hero__scroll-indicator { display: none !important; }
+}
+
+/* ═══════════════════════════════════════════════════════
+   MOBILE — alle anderen Sections
+═══════════════════════════════════════════════════════ */
+
+.nav-logo-img { height: 52px; width: auto; object-fit: contain; }
+@media (max-width: 767px) { .nav-logo-img { height: 40px; } }
+
+@media (max-width: 767px) {
+  .section-pad { padding-top: 4rem; padding-bottom: 4rem; }
+
+  /* About: nur Front-Bild */
+  .about-images-stack { width: 100% !important; height: 280px !important; }
+  .stack-img--back, .stack-img--mid { display: none !important; }
+  .stack-img--front {
+    position: relative !important; inset: auto !important;
+    width: 100% !important; height: 280px !important;
+    top: auto !important; left: auto !important;
+  }
+
+  /* Kontakt: iOS-Zoom verhindern */
+  .contact-form-wrap input,
+  .contact-form-wrap textarea,
+  .contact-form-wrap select { font-size: 16px !important; }
+
+  /* Fix 4 — Testimonials: vertikal stapeln, kein horizontales Scroll */
+  .testimonials-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 20px !important;
+    overflow: hidden !important;
+    width: 100% !important;
+  }
+  .testimonial-card {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* Footer mobile */
+  footer { padding: 48px 24px 40px !important; box-sizing: border-box !important; }
+  footer .grid { display: flex !important; flex-direction: column !important; gap: 32px !important; }
+  footer nav ul { flex-direction: column !important; gap: 16px !important; }
+}
+
+/* Fix 2B — Hero: alle Elemente auf Mobile sichtbar (GSAP-Fallback) */
+@media (max-width: 768px) {
+  .hero__label,
+  .hero__title,
+  .hero__divider,
+  .hero__tagline,
+  .hero__description,
+  .hero__stat,
+  .hero__cta-primary,
+  .hero__cta-secondary {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    clip-path: none !important;
+  }
+  .hero__stats {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    min-height: 44px !important;
+  }
+  .hero__image-wrap {
+    position: relative !important;
+    width: 100% !important;
+  }
+}
+
+/* Fix 3 — Footer Mobile: alles zentriert */
+@media (max-width: 768px) {
+  footer, .footer {
+    padding: 48px 24px 40px !important;
+    box-sizing: border-box !important;
+  }
+  footer .max-w-\\[1280px\\] {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  /* Grid → zentrierte Spalte */
+  footer .grid {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 32px !important;
+    text-align: center !important;
+  }
+  /* Logo zentrieren */
+  footer .grid > div:first-child {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+  /* Nav-Links zentriert */
+  footer nav ul {
+    align-items: center !important;
+  }
+  /* Adresse zentriert */
+  footer address {
+    text-align: center !important;
+  }
+  footer address a {
+    text-align: center !important;
+  }
+  /* Bottom bar */
+  footer .mt-12 {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 12px !important;
+    text-align: center !important;
+  }
+  footer .mt-12 p { text-align: center !important; }
+  footer .mt-12 > div {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+    gap: 24px !important;
+  }
+}
+
+/* Fix 2 — Desktop: Hero-Elemente sichtbar (CSS-Fallback falls GSAP nicht feuert) */
+@media (min-width: 769px) {
+  .hero__label,
+  .hero__title,
+  .hero__tagline,
+  .hero__description,
+  .hero__stats,
+  .hero__stat,
+  .hero__cta-row,
+  .hero__cta-primary,
+  .hero__cta-secondary,
+  .hero__divider {
+    opacity: 1;
+    transform: none;
+    visibility: visible;
+  }
+}
+
+/* Fix 3 — Footer Desktop: linke Spalte linksbündig */
+footer .grid > div:first-child {
+  text-align: left !important;
+  align-items: flex-start !important;
+}
+footer .grid > div:first-child p {
+  text-align: left !important;
+}
+
+/* Fix 4 — Mobile Testimonials: Cards vollbreit */
+@media (max-width: 768px) {
+  .testimonials-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 16px !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    /* reset horizontal snap */
+    -webkit-overflow-scrolling: auto !important;
+  }
+  .testimonial-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+    flex-shrink: 0 !important;
+  }
+}
+
+/* Fix 5 — Mobile: Kontakt-Button vollbreit */
+@media (max-width: 768px) {
+  .contact-form-wrap button[type="submit"],
+  .contact-form-wrap .self-start {
+    width: 100% !important;
+    display: block !important;
+    box-sizing: border-box !important;
+    text-align: center !important;
+    align-self: stretch !important;
+  }
+}
+
+/* Galerie-Seite: 1 Spalte <= 639px */
+@media (max-width: 639px) {
+  .gallery-item { grid-column: auto !important; grid-row: auto !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__scroll-line { animation: none; opacity: 0.4; }
+}
+
+/* ═══════════════════════════════════════════════════════
+   MICRO-FIXES
+═══════════════════════════════════════════════════════ */
+
+/* Fix 1 — Mobile Testimonials: vollbreit, kein horizontal scroll */
+@media (max-width: 768px) {
+  .testimonials-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 16px !important;
+    /* Override Tailwind: -mx-6 px-6 overflow-x-auto snap-x */
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+    overflow-x: hidden !important;
+    overflow-y: visible !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    padding-bottom: 0 !important;
+  }
+  .testimonial-card {
+    /* Override Tailwind: w-[80vw] sm:w-[60vw] snap-start flex-shrink-0 */
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    flex-shrink: 0 !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+  }
+}
+
+/* Fix 2a — Footer "Nächste Seite / Galerie" Teaser: zentriert */
+@media (max-width: 768px) {
+  footer .border-b.border-border {
+    text-align: center !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+  footer .border-b.border-border a {
+    text-align: center !important;
+    justify-content: center !important;
+  }
+}
+
+/* Fix 2b — Footer "STUDIO III" Logo: mittig */
+@media (max-width: 768px) {
+  footer .grid > div:first-child {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+  }
+  footer .grid > div:first-child p {
+    text-align: center !important;
+  }
+  footer .grid > div:first-child img {
+    margin: 0 auto !important;
+  }
+}
