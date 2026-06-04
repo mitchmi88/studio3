@@ -48,7 +48,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         >
           Zum Inhalt springen
         </a>
-        <SmoothScrollProvider />
+        {/* <SmoothScrollProvider /> */}
         <Navigation />
         <main id="main">
           <PageTransitionWrapper>{children}</PageTransitionWrapper>
